@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
 
 * {
     padding: 0;
@@ -10,6 +11,7 @@
 }
 
 body {
+    background-color: #000;
     max-width: 1200px;
     margin: 0 auto;
 
@@ -118,3 +120,199 @@ header .navegacao-primaria li a {
     }
 }
 
+/* SEÇÃO PRINCIPAL SOBRE MIM */
+
+main {
+    background-color: #111;
+    color: white;
+}
+
+main .sobre {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:  30px;
+    justify-content: center;
+    padding: 40px;
+    
+}
+
+.sobre_titulo {
+    margin:  30px;
+    grid-column:  1/-1;
+    text-align: center;
+    color: #f7f7f7;
+}
+
+.sobre_titulo h1 { 
+    font-size: 2.5rem;
+    color: #ff5d56;
+    margin-bottom: 15px;
+    font-family: 'Berkshire Swash', cursive;
+}
+
+.sobre_titulo p {
+    color: #707070;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.sobre_titulo div {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.sobre_titulo span { 
+    display: block;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: #dc3545;
+}
+
+.sobre img {
+    animation: ladoSecao .5s ease-in-out forwards ;
+    cursor: pointer;
+    grid-row: 2;
+    max-width: 100%;
+    border-radius: 4px;
+    filter: blur(0);
+}
+
+.sobre img:hover {
+    transition: .5s ease-in;
+    filter: blur(1px);
+}
+
+ .sobre_conteudo {
+    animation: sobeSecao .6s ease-in-out forwards;
+    grid-column: 2/-1;
+    display: grid;
+    color: #707070;
+    grid-template-columns: 1fr 1fr    ;
+ }
+
+ .sobre_texto {
+    display: grid;
+    grid-column: 1/-1;
+    grid-template-columns:  1fr 1fr;
+ }
+
+ .sobre_texto h1 {
+    font-size: 2.3rem;
+    color: #fff;
+    grid-column: 1/-1;
+ }
+
+ .sobre_texto h1::after {
+    background-color: #ff5d56;
+    height: 6px;
+    width: 60px;
+    margin: 20px 0;
+    content: '';
+    display: block;
+    border-radius: 5px;
+ }
+
+ .sobre_texto p {
+    font-size: 1.3rem;
+    grid-row: 2;
+    grid-column: 1/-1;
+ }
+
+ .sobre_info {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+    grid-column: 1/-1;
+    gap: 15px;
+    align-items: center;
+ }
+
+ .sobre_info i {
+    color: #dc3545;
+    display: inline-block;
+    padding-right: 15px;
+    font-size: 1.5rem;
+ }
+
+ .sobre_info p {
+    font-size: .9rem;
+ }
+
+ @keyframes sobeSecao {
+    from {
+        transition: .5s;
+        transform: translate3d(60px, 0, 0);
+    }
+    to {
+        transform: matrix3d(0, 0, 0);
+    }
+ }
+
+ @keyframes ladoSecao {
+    from {
+        transition: .5s;
+        transform: translate3d(-60px, 0, 0);
+    }
+    to {
+        transform: matrix3d(0, 0, 0);
+    }
+ }
+
+ /* RESPONSIVO */
+
+ @media(max-width: 992px) {
+    .section-div img {
+        display: none;
+    }
+
+    .section-div {
+        background-image: url(img/pessoa_eu.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    header {
+        justify-content: space-between;
+        padding: 30px 70px;
+    }
+
+    header .navegacao-primaria {
+        display: none;
+    }
+
+    header i {
+        color: #f7f7f7;
+        font-size: 3rem;
+    }
+
+    header .navegacao-primaria.ativado {
+        background: linear-gradient(rgba(43, 42, 42, 0.176), rgba(46, 46, 46, 0.724));
+        position: absolute;
+        display: grid;
+        top: 80px;
+        color: white;
+        z-index: 1;
+        padding: 30px;
+        font-size: 1.6rem;
+        font-weight: bold;
+        border-radius: 0 0 4px 4px;
+        right: 20px;
+        animation: sobeSecao .8s ease-in-out forwards;
+    }
+}
+
+
+@media(max-width: 992px) {
+    .sobre img {
+        grid-column: 1/-1;
+        justify-self: center;
+    }
+
+    .sobre_conteudo {
+        grid-column: 1/-1;
+    }
+}
