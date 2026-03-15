@@ -5,7 +5,6 @@ import {
 
 /** Roles rotated in the Hero typing animation */
 export const roles = [
-  'Desenvolvedor Frontend',
   'Analista de Dados',
   'Desenvolvedor Full Stack',
 ]

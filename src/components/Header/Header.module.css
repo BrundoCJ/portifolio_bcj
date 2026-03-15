@@ -24,10 +24,13 @@
 }
 
 .logo {
-  font-size: 1.6rem;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   transition: opacity 0.2s;
 }
 
@@ -35,8 +38,16 @@
   opacity: 0.85;
 }
 
-.logo span {
+.logoAccent {
   color: var(--accent);
+  font-weight: 800;
+}
+
+
+.logoLight {
+  color: var(--text-primary);
+  font-weight: 300;
+  letter-spacing: 3px;
 }
 
 .navList {

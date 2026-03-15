@@ -2,12 +2,18 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { personalInfo } from '../../data/personal'
 import { fadeInLeft, staggerContainer, staggerItem, whenInView } from '../../utils/animations'
+import { useTypingEffect } from '../../hooks/useTypingEffect'
 import styles from './About.module.css'
+
+const statusPhrases = [
+  'Vamos construir algo incrível?',
+]
 
 export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const animate = whenInView(isInView)
+  const displayed = useTypingEffect(statusPhrases)
 
   return (
     <section id="sobre" className={`${styles.about} section`} ref={ref}>
@@ -32,10 +38,10 @@ export default function About() {
           >
             <div className={styles.imageWrapper}>
               <img src="/img/pessoa_eu.jpg" alt="Bruno" className={styles.photo} />
-              <div className={styles.badge}>
+              {/* <div className={styles.badge}>
                 <strong>3+</strong>
                 <span>Anos de experiência</span>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 
@@ -46,16 +52,22 @@ export default function About() {
             animate={animate}
           >
             <motion.div variants={staggerItem}>
+              <div className={styles.typingWrapper}>
+                <span className={styles.typingText} aria-live="polite">
+                  {displayed}
+                  <span className={styles.cursor} aria-hidden="true" />
+                </span>
+              </div>
               <h3 className={styles.subtitle}>Desenvolvedor Junior & Analista de Dados</h3>
               <p className={styles.bio}>
-                Sou um desenvolvedor apaixonado por tecnologia, baseado em Curitiba, Brasil.
-                Combino habilidades de desenvolvimento frontend com análise de dados para criar
+                Sou um desenvolvedor apaixonado por tecnologia, baseado em Maringá, Brasil.
+                Combino habilidades de desenvolvimento frontend e backend com análise de dados para criar
                 soluções completas e orientadas por resultados. Gosto de resolver problemas complexos
                 com código limpo e interfaces intuitivas que realmente fazem diferença para as pessoas.
               </p>
               <p className={styles.bio}>
                 Estou sempre aprendendo e explorando novas tecnologias, com foco em criar
-                experiências digitais que sejam tanto funcionais quanto belas.
+                experiências digitais que sejam tanto funcionais quanto sofisticadas.
               </p>
             </motion.div>
 
@@ -71,15 +83,6 @@ export default function About() {
               ))}
             </motion.div>
 
-            <motion.a
-              href="/cv.pdf"
-              download
-              className="btn btn-primary"
-              variants={staggerItem}
-              style={{ alignSelf: 'flex-start' }}
-            >
-              Download CV
-            </motion.a>
           </motion.div>
         </div>
       </div>

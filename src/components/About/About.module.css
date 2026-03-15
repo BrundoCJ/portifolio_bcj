@@ -61,6 +61,34 @@
   gap: 28px;
 }
 
+.typingWrapper {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.typingText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .subtitle {
   font-size: 1.3rem;
   font-weight: 600;

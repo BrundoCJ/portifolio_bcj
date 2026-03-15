@@ -136,14 +136,14 @@
 
 .timelineOrg {
   font-size: 0.82rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   display: block;
   margin-bottom: 8px;
 }
 
 .timelineDesc {
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 

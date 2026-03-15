@@ -23,7 +23,8 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`} role="banner">
       <div className={`container ${styles.inner}`}>
         <a href="#home" className={styles.logo} onClick={e => handleNavClick(e, '#home')}>
-          BCJ
+          <span className={styles.logoAccent}>B</span>
+          <span className={styles.logoLight}>CJ</span>
         </a>
 
         <nav className={styles.nav} aria-label="Navegação principal">

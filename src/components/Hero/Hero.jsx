@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FiDownload, FiArrowRight } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 import { roles, socials } from '../../data/personal'
 import { useTypingEffect } from '../../hooks/useTypingEffect'
 import { scrollTo } from '../../utils/scrollTo'
@@ -37,11 +37,7 @@ export default function Hero() {
             </p>
 
             <div className={styles.actions}>
-              <a href="/cv.pdf" download className="btn btn-primary">
-                <FiDownload size={16} />
-                Download CV
-              </a>
-              <a
+<a
                 href="#contato"
                 className="btn btn-outline"
                 onClick={e => { e.preventDefault(); scrollTo('#contato') }}

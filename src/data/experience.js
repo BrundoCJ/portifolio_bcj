@@ -3,34 +3,26 @@
 export const experience = [
   {
     type: 'work',
-    title: 'Desenvolvedor Frontend Jr.',
-    org: 'Empresa Tech',
-    period: '2024 — Presente',
+    title: 'Desenvolvedor Full Stack Junior',
+    org: 'ROQT Data & IA',
+    period: '2026 — Presente',
     description:
       'Desenvolvimento de interfaces responsivas com React e otimização de performance em aplicações web.',
   },
   {
     type: 'work',
-    title: 'Analista de Dados Jr.',
-    org: 'Startup de Analytics',
-    period: '2023 — 2024',
+    title: 'Analista de Dados',
+    org: 'ROQT Data & IA',
+    period: '2025 — 2026',
     description:
-      'Criação de dashboards em Power BI, análise de dados com Python e SQL para geração de insights.',
+      'Desenvolvimento de interfaces responsivas com React e otimização de performance em aplicações web.',
   },
   {
     type: 'edu',
-    title: 'Análise e Desenvolvimento de Sistemas',
-    org: 'Universidade Positivo',
-    period: '2022 — 2024',
+    title: 'Engenharia de Software',
+    org: 'Universidade Unicesumar',
+    period: '2024 — 2028',
     description:
-      'Formação em desenvolvimento de software com foco em sistemas web e banco de dados.',
-  },
-  {
-    type: 'edu',
-    title: 'Bootcamp Full Stack',
-    org: 'Rocketseat',
-    period: '2023',
-    description:
-      'Curso intensivo de desenvolvimento web com Node.js, React e boas práticas de código.',
+      'Graduando Engenharia de Software pela Unicesumar',
   },
 ]
