@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(node -e \"const si = require\\(''./node_modules/react-icons/si/index.js''\\); console.log\\(Object.keys\\(si\\).filter\\(k => [''SiHtml5'',''SiCss3'',''SiJavascript'',''SiReact'',''SiPython'',''SiPostgresql'',''SiMicrosoftpowerpoint'',''SiNodedotjs'',''SiGit'',''SiGithub'',''SiTypescript'',''SiTailwindcss'',''SiDocker''].includes\\(k\\)\\)\\)\")",
+      "Bash(node -e \"const si = require\\(''./node_modules/react-icons/si/index.js''\\); console.log\\(Object.keys\\(si\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''css''\\)\\)\\)\")",
+      "Bash(node -e \"const si = require\\(''./node_modules/react-icons/si/index.js''\\); console.log\\(Object.keys\\(si\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''power''\\) || k.toLowerCase\\(\\).includes\\(''tableau''\\) || k.toLowerCase\\(\\).includes\\(''bi''\\)\\)\\)\")"
     ]
   }
 }

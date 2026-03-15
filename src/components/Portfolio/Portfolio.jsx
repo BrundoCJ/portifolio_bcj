@@ -1,19 +1,13 @@
-import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { FiExternalLink, FiGithub } from 'react-icons/fi'
-import { projects, projectCategories, categoryGradients } from '../../data/projects'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { FiExternalLink } from 'react-icons/fi'
+import { projects, categoryGradients } from '../../data/projects'
 import { staggerItem, whenInView } from '../../utils/animations'
 import styles from './Portfolio.module.css'
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState('Todos')
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
-
-  const filtered =
-    activeCategory === 'Todos'
-      ? projects
-      : projects.filter(p => p.category === activeCategory)
 
   return (
     <section id="portfolio" className={`${styles.portfolio} section`} ref={ref}>
@@ -29,26 +23,8 @@ export default function Portfolio() {
           <div className="section-divider" />
         </motion.div>
 
-        <motion.div
-          className={styles.filters}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          {projectCategories.map(cat => (
-            <button
-              key={cat}
-              className={`${styles.filterBtn} ${activeCategory === cat ? styles.activeFilter : ''}`}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-
-        <AnimatePresence mode="popLayout">
-          <motion.div className={styles.grid} layout>
-            {filtered.map((project, i) => (
+        <motion.div className={styles.grid}>
+            {projects.map((project, i) => (
               <motion.article
                 key={project.title}
                 className={styles.card}
@@ -62,9 +38,7 @@ export default function Portfolio() {
                   className={styles.cardImage}
                   style={{ background: categoryGradients[project.category] ?? 'var(--bg-card)' }}
                   aria-hidden="true"
-                >
-                  <span className={styles.cardCategory}>{project.category}</span>
-                </div>
+                />
 
                 <div className={styles.cardBody}>
                   <h3 className={styles.cardTitle}>{project.title}</h3>
@@ -77,16 +51,6 @@ export default function Portfolio() {
                   </div>
 
                   <div className={styles.cardLinks}>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.cardLink}
-                      aria-label={`Código do ${project.title}`}
-                    >
-                      <FiGithub size={16} />
-                      Código
-                    </a>
                     {project.live && (
                       <a
                         href={project.live}
@@ -104,7 +68,6 @@ export default function Portfolio() {
               </motion.article>
             ))}
           </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   )

@@ -12,25 +12,24 @@ export const roles = [
 
 /** Personal detail items shown in the About section */
 export const personalInfo = [
-  { icon: FiCalendar,  label: 'Nascimento',   value: '04 de Maio, 2001' },
+  { icon: FiCalendar,  label: 'Nascimento',   value: '04 de Abril, 2004' },
   { icon: FiBriefcase, label: 'Freelance',     value: 'Disponível' },
-  { icon: FiMapPin,    label: 'Endereço',      value: 'Curitiba, Brasil' },
-  { icon: FiGlobe,     label: 'Idiomas',       value: 'Português, Inglês, Espanhol' },
+  { icon: FiMapPin,    label: 'Endereço',      value: 'Maringá, Brasil' },
+  { icon: FiGlobe,     label: 'Idiomas',       value: 'Português, Inglês' },
   { icon: FiUser,      label: 'Nacionalidade', value: 'Brasileiro' },
-  { icon: FiPhone,     label: 'Telefone',      value: '+55 (41) 9 9999-9999' },
+  { icon: FiPhone,     label: 'Telefone',      value: '+55 (44) 9 9819-8263' },
   { icon: FiMail,      label: 'E-mail',        value: 'bruno@email.com' },
 ]
 
 /** Contact details shown in the Contact section */
 export const contactInfo = [
-  { icon: FiMapPin, label: 'Localização', value: 'Curitiba, Paraná — Brasil' },
+  { icon: FiMapPin, label: 'Localização', value: 'Maringá, Paraná — Brasil' },
   { icon: FiMail,   label: 'E-mail',      value: 'bruno@email.com' },
-  { icon: FiPhone,  label: 'Telefone',    value: '+55 (41) 9 9999-9999' },
+  { icon: FiPhone,  label: 'Telefone',    value: '+55 (44) 9 9819-8263' },
 ]
 
 /** Social links used in Hero and Contact */
 export const socials = [
-  { icon: FiGithub,    label: 'GitHub',    href: 'https://github.com' },
-  { icon: FiLinkedin,  label: 'LinkedIn',  href: 'https://linkedin.com' },
-  { icon: FiInstagram, label: 'Instagram', href: 'https://instagram.com' },
+  { icon: FiGithub,    label: 'GitHub',    href: 'https://github.com/BrundoCJ' },
+  { icon: FiLinkedin,  label: 'LinkedIn',  href: 'https://www.linkedin.com/in/bruno-conrado-jeaniniiia75a18189/' },
 ]

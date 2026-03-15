@@ -32,31 +32,29 @@ export default function Resume() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h3 className={styles.colTitle}>Habilidades Técnicas</h3>
-            <div className={styles.skillsList}>
-              {skills.map((skill, i) => (
-                <div key={skill.name} className={styles.skillItem}>
-                  <div className={styles.skillHeader}>
-                    <span className={styles.skillName}>{skill.name}</span>
-                    <div className={styles.skillMeta}>
-                      <span
-                        className={styles.skillCategory}
-                        style={{ color: categoryColors[skill.category] }}
-                      >
-                        {skill.category}
-                      </span>
-                      <span className={styles.skillLevel}>{skill.level}%</span>
-                    </div>
-                  </div>
-                  <div className={styles.bar}>
-                    <motion.div
-                      className={styles.barFill}
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${skill.level}%` } : {}}
-                      transition={{ duration: 0.8, delay: 0.2 + i * 0.06, ease: 'easeOut' }}
-                    />
-                  </div>
-                </div>
-              ))}
+            <div className={styles.skillsGrid}>
+              {skills.map((skill, i) => {
+                const Icon = skill.icon
+                return (
+                  <motion.div
+                    key={skill.name}
+                    className={styles.skillCard}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: 0.1 + i * 0.04 }}
+                    title={skill.name}
+                  >
+                    <Icon size={28} color={skill.color} />
+                    <span className={styles.skillCardName}>{skill.name}</span>
+                    <span
+                      className={styles.skillCardCategory}
+                      style={{ color: categoryColors[skill.category] }}
+                    >
+                      {skill.category}
+                    </span>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
 

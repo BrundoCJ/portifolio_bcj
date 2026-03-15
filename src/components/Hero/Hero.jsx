@@ -18,7 +18,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            <span className={styles.greeting}>Olá, mundo! 👋</span>
+            <span className={styles.greeting}>Bem - Vindo!</span>
 
             <h1 className={styles.title}>
               Eu sou <span className={styles.name}>Bruno</span>
