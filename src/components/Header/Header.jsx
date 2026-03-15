@@ -1,47 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { navLinks } from '../../data/navigation'
+import { useScrolled } from '../../hooks/useScrolled'
+import { useActiveSection } from '../../hooks/useActiveSection'
+import { scrollTo } from '../../utils/scrollTo'
 import styles from './Header.module.css'
 
-const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Resumo', href: '#resumo' },
-  { label: 'Portfólio', href: '#portfolio' },
-  { label: 'Preços', href: '#precos' },
-  { label: 'Contato', href: '#contato' },
-]
+const sectionIds = navLinks.map(l => l.href.slice(1))
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
+  const scrolled = useScrolled(20)
+  const activeSection = useActiveSection(sectionIds)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-
-      const sections = navLinks.map(l => l.href.slice(1))
-      let current = 'home'
-      for (const id of sections) {
-        const el = document.getElementById(id)
-        if (el && window.scrollY >= el.offsetTop - 100) {
-          current = id
-        }
-      }
-      setActiveSection(current)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const handleNavClick = (e, href) => {
     e.preventDefault()
     setMenuOpen(false)
-    const target = document.querySelector(href)
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    }
+    scrollTo(href)
   }
 
   return (
@@ -53,24 +28,27 @@ export default function Header() {
 
         <nav className={styles.nav} aria-label="Navegação principal">
           <ul className={styles.navList}>
-            {navLinks.map(link => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className={`${styles.navLink} ${activeSection === link.href.slice(1) ? styles.active : ''}`}
-                  onClick={e => handleNavClick(e, link.href)}
-                >
-                  {link.label}
-                  {activeSection === link.href.slice(1) && (
-                    <motion.span
-                      className={styles.activeDot}
-                      layoutId="activeDot"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </a>
-              </li>
-            ))}
+            {navLinks.map(link => {
+              const isActive = activeSection === link.href.slice(1)
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                    onClick={e => handleNavClick(e, link.href)}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.span
+                        className={styles.activeDot}
+                        layoutId="activeDot"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </nav>
 

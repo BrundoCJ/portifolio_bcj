@@ -1,58 +1,10 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiCheck, FiX } from 'react-icons/fi'
+import { plans } from '../../data/pricing'
+import { scrollTo } from '../../utils/scrollTo'
+import { staggerItem, whenInView } from '../../utils/animations'
 import styles from './Pricing.module.css'
-
-const plans = [
-  {
-    name: 'Básico',
-    price: '800',
-    description: 'Ideal para quem precisa de uma presença online simples e eficaz.',
-    features: [
-      { text: 'Landing page (1 página)', included: true },
-      { text: 'Design responsivo', included: true },
-      { text: 'SEO básico', included: true },
-      { text: 'Formulário de contato', included: true },
-      { text: 'Integração com redes sociais', included: false },
-      { text: 'Painel administrativo', included: false },
-      { text: 'Suporte por 3 meses', included: false },
-    ],
-    cta: 'Contratar',
-    popular: false,
-  },
-  {
-    name: 'Profissional',
-    price: '2.200',
-    description: 'Para negócios que precisam de uma solução completa e profissional.',
-    features: [
-      { text: 'Site multi-páginas', included: true },
-      { text: 'Design responsivo', included: true },
-      { text: 'SEO avançado', included: true },
-      { text: 'Formulário de contato', included: true },
-      { text: 'Integração com redes sociais', included: true },
-      { text: 'Painel administrativo', included: true },
-      { text: 'Suporte por 3 meses', included: false },
-    ],
-    cta: 'Contratar',
-    popular: true,
-  },
-  {
-    name: 'Premium',
-    price: '4.500',
-    description: 'Solução completa com análise de dados e suporte dedicado.',
-    features: [
-      { text: 'Aplicação completa', included: true },
-      { text: 'Design responsivo', included: true },
-      { text: 'SEO avançado + Analytics', included: true },
-      { text: 'Formulário + CRM', included: true },
-      { text: 'Integrações customizadas', included: true },
-      { text: 'Painel administrativo', included: true },
-      { text: 'Suporte por 3 meses', included: true },
-    ],
-    cta: 'Contratar',
-    popular: false,
-  },
-]
 
 export default function Pricing() {
   const ref = useRef(null)
@@ -63,9 +15,9 @@ export default function Pricing() {
       <div className="container">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerItem}
+          initial="hidden"
+          animate={whenInView(isInView)}
         >
           <span className="section-tag">Investimento</span>
           <h2 className="section-title">Meus <span>Preços</span></h2>
@@ -108,12 +60,9 @@ export default function Pricing() {
               <a
                 href="#contato"
                 className={`btn ${plan.popular ? 'btn-primary' : 'btn-outline'} ${styles.cta}`}
-                onClick={e => {
-                  e.preventDefault()
-                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
-                }}
+                onClick={e => { e.preventDefault(); scrollTo('#contato') }}
               >
-                {plan.cta}
+                Contratar
               </a>
             </motion.div>
           ))}

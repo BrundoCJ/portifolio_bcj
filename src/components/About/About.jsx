@@ -1,44 +1,22 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import {
-  FiCalendar, FiMapPin, FiGlobe, FiPhone, FiMail,
-  FiBriefcase, FiUser
-} from 'react-icons/fi'
+import { motion, useInView } from 'framer-motion'
+import { personalInfo } from '../../data/personal'
+import { fadeInLeft, staggerContainer, staggerItem, whenInView } from '../../utils/animations'
 import styles from './About.module.css'
-
-const personalInfo = [
-  { icon: FiCalendar, label: 'Nascimento', value: '04 de Maio, 2001' },
-  { icon: FiBriefcase, label: 'Freelance', value: 'Disponível' },
-  { icon: FiMapPin, label: 'Endereço', value: 'Curitiba, Brasil' },
-  { icon: FiGlobe, label: 'Idiomas', value: 'Português, Inglês, Espanhol' },
-  { icon: FiUser, label: 'Nacionalidade', value: 'Brasileiro' },
-  { icon: FiPhone, label: 'Telefone', value: '+55 (41) 9 9999-9999' },
-  { icon: FiMail, label: 'E-mail', value: 'bruno@email.com' },
-]
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
-}
 
 export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const animate = whenInView(isInView)
 
   return (
     <section id="sobre" className={`${styles.about} section`} ref={ref}>
       <div className="container">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerItem}
+          initial="hidden"
+          animate={animate}
         >
           <span className="section-tag">Quem sou eu</span>
           <h2 className="section-title">Sobre <span>Mim</span></h2>
@@ -48,16 +26,12 @@ export default function About() {
         <div className={styles.grid}>
           <motion.div
             className={styles.imageCol}
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            variants={fadeInLeft}
+            initial="hidden"
+            animate={animate}
           >
             <div className={styles.imageWrapper}>
-              <img
-                src="/img/pessoa_eu.jpg"
-                alt="Bruno"
-                className={styles.photo}
-              />
+              <img src="/img/pessoa_eu.jpg" alt="Bruno" className={styles.photo} />
               <div className={styles.badge}>
                 <strong>3+</strong>
                 <span>Anos de experiência</span>
@@ -67,11 +41,11 @@ export default function About() {
 
           <motion.div
             className={styles.contentCol}
-            variants={containerVariants}
+            variants={staggerContainer}
             initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
+            animate={animate}
           >
-            <motion.div variants={itemVariants}>
+            <motion.div variants={staggerItem}>
               <h3 className={styles.subtitle}>Desenvolvedor Junior & Analista de Dados</h3>
               <p className={styles.bio}>
                 Sou um desenvolvedor apaixonado por tecnologia, baseado em Curitiba, Brasil.
@@ -85,9 +59,9 @@ export default function About() {
               </p>
             </motion.div>
 
-            <motion.div className={styles.infoGrid} variants={containerVariants}>
+            <motion.div className={styles.infoGrid} variants={staggerContainer}>
               {personalInfo.map(({ icon: Icon, label, value }) => (
-                <motion.div key={label} className={styles.infoItem} variants={itemVariants}>
+                <motion.div key={label} className={styles.infoItem} variants={staggerItem}>
                   <Icon className={styles.infoIcon} size={16} aria-hidden="true" />
                   <div>
                     <span className={styles.infoLabel}>{label}:</span>
@@ -101,7 +75,7 @@ export default function About() {
               href="/cv.pdf"
               download
               className="btn btn-primary"
-              variants={itemVariants}
+              variants={staggerItem}
               style={{ alignSelf: 'flex-start' }}
             >
               Download CV

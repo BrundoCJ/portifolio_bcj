@@ -1,35 +1,28 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { FiMapPin, FiMail, FiPhone, FiSend, FiGithub, FiLinkedin, FiInstagram } from 'react-icons/fi'
+import { FiSend } from 'react-icons/fi'
+import { contactInfo, socials } from '../../data/personal'
+import { staggerItem, whenInView } from '../../utils/animations'
 import styles from './Contact.module.css'
 
-const contactInfo = [
-  { icon: FiMapPin, label: 'Localização', value: 'Curitiba, Paraná — Brasil' },
-  { icon: FiMail, label: 'E-mail', value: 'bruno@email.com' },
-  { icon: FiPhone, label: 'Telefone', value: '+55 (41) 9 9999-9999' },
-]
-
-const socials = [
-  { icon: FiGithub, label: 'GitHub', href: 'https://github.com' },
-  { icon: FiLinkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-  { icon: FiInstagram, label: 'Instagram', href: 'https://instagram.com' },
-]
+const INITIAL_FORM = { name: '', email: '', subject: '', message: '' }
 
 export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState(null) // 'sending' | 'sent' | 'error'
+  const [form, setForm] = useState(INITIAL_FORM)
+  const [status, setStatus] = useState(null) // null | 'sending' | 'sent'
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
   const handleSubmit = e => {
     e.preventDefault()
     setStatus('sending')
+    // TODO: replace with real API call (e.g. EmailJS, Formspree, etc.)
     setTimeout(() => {
       setStatus('sent')
-      setForm({ name: '', email: '', subject: '', message: '' })
+      setForm(INITIAL_FORM)
       setTimeout(() => setStatus(null), 4000)
     }, 1200)
   }
@@ -39,9 +32,9 @@ export default function Contact() {
       <div className="container">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerItem}
+          initial="hidden"
+          animate={whenInView(isInView)}
         >
           <span className="section-tag">Entre em contato</span>
           <h2 className="section-title">Vamos <span>Conversar?</span></h2>
@@ -103,27 +96,19 @@ export default function Contact() {
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="name">Nome</label>
                 <input
-                  id="name"
-                  name="name"
-                  type="text"
+                  id="name" name="name" type="text"
                   placeholder="Seu nome"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  className={styles.input}
+                  value={form.name} onChange={handleChange}
+                  required className={styles.input}
                 />
               </div>
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="email">E-mail</label>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="email" name="email" type="email"
                   placeholder="seu@email.com"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  className={styles.input}
+                  value={form.email} onChange={handleChange}
+                  required className={styles.input}
                 />
               </div>
             </div>
@@ -131,28 +116,21 @@ export default function Contact() {
             <div className={styles.field}>
               <label className={styles.label} htmlFor="subject">Assunto</label>
               <input
-                id="subject"
-                name="subject"
-                type="text"
+                id="subject" name="subject" type="text"
                 placeholder="Sobre o que você quer falar?"
-                value={form.subject}
-                onChange={handleChange}
-                required
-                className={styles.input}
+                value={form.subject} onChange={handleChange}
+                required className={styles.input}
               />
             </div>
 
             <div className={styles.field}>
               <label className={styles.label} htmlFor="message">Mensagem</label>
               <textarea
-                id="message"
-                name="message"
+                id="message" name="message"
                 placeholder="Descreva seu projeto ou dúvida..."
                 rows={6}
-                value={form.message}
-                onChange={handleChange}
-                required
-                className={styles.textarea}
+                value={form.message} onChange={handleChange}
+                required className={styles.textarea}
               />
             </div>
 
@@ -161,13 +139,10 @@ export default function Contact() {
               className={`btn btn-primary ${styles.submitBtn}`}
               disabled={status === 'sending'}
             >
-              {status === 'sending' ? (
-                <>Enviando...</>
-              ) : status === 'sent' ? (
-                <>Mensagem enviada!</>
-              ) : (
-                <><FiSend size={16} /> Enviar mensagem</>
-              )}
+              {status === 'sending' ? 'Enviando...'
+                : status === 'sent'    ? 'Mensagem enviada!'
+                : <><FiSend size={16} /> Enviar mensagem</>
+              }
             </button>
 
             {status === 'sent' && (

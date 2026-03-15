@@ -1,40 +1,12 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiDownload, FiArrowRight, FiGithub, FiLinkedin, FiInstagram } from 'react-icons/fi'
+import { FiDownload, FiArrowRight } from 'react-icons/fi'
+import { roles, socials } from '../../data/personal'
+import { useTypingEffect } from '../../hooks/useTypingEffect'
+import { scrollTo } from '../../utils/scrollTo'
 import styles from './Hero.module.css'
 
-const roles = [
-  'Desenvolvedor Frontend',
-  'Analista de Dados',
-  'Desenvolvedor Full Stack',
-]
-
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [typing, setTyping] = useState(true)
-
-  useEffect(() => {
-    const current = roles[roleIndex]
-
-    if (typing) {
-      if (displayed.length < current.length) {
-        const t = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 65)
-        return () => clearTimeout(t)
-      } else {
-        const t = setTimeout(() => setTyping(false), 1800)
-        return () => clearTimeout(t)
-      }
-    } else {
-      if (displayed.length > 0) {
-        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35)
-        return () => clearTimeout(t)
-      } else {
-        setRoleIndex(i => (i + 1) % roles.length)
-        setTyping(true)
-      }
-    }
-  }, [displayed, typing, roleIndex])
+  const displayed = useTypingEffect(roles)
 
   return (
     <section id="home" className={`${styles.hero} section`}>
@@ -69,11 +41,10 @@ export default function Hero() {
                 <FiDownload size={16} />
                 Download CV
               </a>
-              <a href="#contato" className="btn btn-outline"
-                onClick={e => {
-                  e.preventDefault()
-                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
-                }}
+              <a
+                href="#contato"
+                className="btn btn-outline"
+                onClick={e => { e.preventDefault(); scrollTo('#contato') }}
               >
                 Fale Comigo
                 <FiArrowRight size={16} />
@@ -81,15 +52,18 @@ export default function Hero() {
             </div>
 
             <div className={styles.socials}>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={styles.socialLink}>
-                <FiGithub size={20} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={styles.socialLink}>
-                <FiLinkedin size={20} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.socialLink}>
-                <FiInstagram size={20} />
-              </a>
+              {socials.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={styles.socialLink}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
             </div>
           </motion.div>
 

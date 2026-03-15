@@ -1,0 +1,47 @@
+export const plans = [
+  {
+    name: 'Básico',
+    price: '800',
+    description: 'Ideal para quem precisa de uma presença online simples e eficaz.',
+    popular: false,
+    features: [
+      { text: 'Landing page (1 página)',      included: true },
+      { text: 'Design responsivo',            included: true },
+      { text: 'SEO básico',                   included: true },
+      { text: 'Formulário de contato',        included: true },
+      { text: 'Integração com redes sociais', included: false },
+      { text: 'Painel administrativo',        included: false },
+      { text: 'Suporte por 3 meses',          included: false },
+    ],
+  },
+  {
+    name: 'Profissional',
+    price: '2.200',
+    description: 'Para negócios que precisam de uma solução completa e profissional.',
+    popular: true,
+    features: [
+      { text: 'Site multi-páginas',           included: true },
+      { text: 'Design responsivo',            included: true },
+      { text: 'SEO avançado',                 included: true },
+      { text: 'Formulário de contato',        included: true },
+      { text: 'Integração com redes sociais', included: true },
+      { text: 'Painel administrativo',        included: true },
+      { text: 'Suporte por 3 meses',          included: false },
+    ],
+  },
+  {
+    name: 'Premium',
+    price: '4.500',
+    description: 'Solução completa com análise de dados e suporte dedicado.',
+    popular: false,
+    features: [
+      { text: 'Aplicação completa',           included: true },
+      { text: 'Design responsivo',            included: true },
+      { text: 'SEO avançado + Analytics',     included: true },
+      { text: 'Formulário + CRM',             included: true },
+      { text: 'Integrações customizadas',     included: true },
+      { text: 'Painel administrativo',        included: true },
+      { text: 'Suporte por 3 meses',          included: true },
+    ],
+  },
+]

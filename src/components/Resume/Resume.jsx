@@ -1,68 +1,23 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { skills, categoryColors } from '../../data/skills'
+import { experience } from '../../data/experience'
+import { staggerItem, whenInView } from '../../utils/animations'
 import styles from './Resume.module.css'
-
-const skills = [
-  { name: 'HTML & CSS', level: 90, category: 'Frontend' },
-  { name: 'JavaScript', level: 80, category: 'Frontend' },
-  { name: 'React', level: 75, category: 'Frontend' },
-  { name: 'Python', level: 85, category: 'Dados' },
-  { name: 'SQL', level: 80, category: 'Dados' },
-  { name: 'Power BI', level: 70, category: 'Dados' },
-  { name: 'Node.js', level: 60, category: 'Backend' },
-  { name: 'Git & GitHub', level: 85, category: 'Ferramentas' },
-]
-
-const experience = [
-  {
-    type: 'work',
-    title: 'Desenvolvedor Frontend Jr.',
-    org: 'Empresa Tech',
-    period: '2024 — Presente',
-    description: 'Desenvolvimento de interfaces responsivas com React e otimização de performance em aplicações web.',
-  },
-  {
-    type: 'work',
-    title: 'Analista de Dados Jr.',
-    org: 'Startup de Analytics',
-    period: '2023 — 2024',
-    description: 'Criação de dashboards em Power BI, análise de dados com Python e SQL para geração de insights.',
-  },
-  {
-    type: 'edu',
-    title: 'Análise e Desenvolvimento de Sistemas',
-    org: 'Universidade Positivo',
-    period: '2022 — 2024',
-    description: 'Formação em desenvolvimento de software com foco em sistemas web e banco de dados.',
-  },
-  {
-    type: 'edu',
-    title: 'Bootcamp Full Stack',
-    org: 'Rocketseat',
-    period: '2023',
-    description: 'Curso intensivo de desenvolvimento web com Node.js, React e boas práticas de código.',
-  },
-]
-
-const categoryColors = {
-  Frontend: '#3b82f6',
-  Dados: '#8b5cf6',
-  Backend: '#10b981',
-  Ferramentas: '#f59e0b',
-}
 
 export default function Resume() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const animate = whenInView(isInView)
 
   return (
     <section id="resumo" className={`${styles.resume} section`} ref={ref}>
       <div className="container">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerItem}
+          initial="hidden"
+          animate={animate}
         >
           <span className="section-tag">Minhas habilidades</span>
           <h2 className="section-title">Resumo <span>Profissional</span></h2>
