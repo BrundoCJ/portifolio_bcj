@@ -1,4 +1,4 @@
-# Dev Bruno — Portfólio Pessoal
+#  Bruno — Portfólio Pessoal
 
 Portfólio pessoal de Bruno, desenvolvedor frontend e analista de dados baseado em Curitiba, Brasil.
 Construído com **React + Vite**, animações fluidas via **Framer Motion** e arquitetura orientada a separação de responsabilidades.
