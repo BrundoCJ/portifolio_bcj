@@ -5,104 +5,145 @@
 .grid {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
+/* ── Card ── */
 .card {
   background: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
   overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  min-height: 360px;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  display: grid;
+  grid-template-columns: 52% 1fr;
+  height: 380px;
   cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
-  border-color: rgba(65, 105, 225, 0.3);
+  border-color: rgba(65, 105, 225, 0.45);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
-/* faz o wrapper do carrossel esticar 100% da altura */
-.card > :first-child {
-  flex: 0 0 55%;
-  min-height: 100%;
+/* ── Imagem ── */
+.imageCol {
+  position: relative;
+  overflow: hidden;
 }
 
-.divider {
-  flex: 0 0 3px;
-  background: var(--border);
-  align-self: stretch;
+.imageCol img,
+.imageCol :global(.slide) {
+  height: 100%;
 }
 
+/* overlay escurece levemente a imagem e aparece o botão no hover */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, rgba(0,0,0,0.5));
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.card:hover .imageOverlay {
+  opacity: 1;
+}
+
+.viewBtn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(65, 105, 225, 0.85);
+  border-radius: 20px;
+  padding: 6px 14px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* ── Conteúdo ── */
 .cardBody {
-  flex: 1;
-  padding: 36px 40px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
-  overflow-y: auto;
+  gap: 14px;
+  overflow: hidden;
+  border-left: 1px solid var(--border);
 }
 
 .cardTitle {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
+  line-height: 1.3;
+  /* clamp a 2 linhas */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .cardDesc {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.75;
-  white-space: pre-line;
+  line-height: 1.7;
+  /* clamp a 4 linhas */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* ── Tags ── */
 .cardTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: auto;
 }
 
 .tag {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
   background: rgba(255,255,255,0.05);
   border: 1px solid var(--border);
-  transition: background 0.2s, transform 0.2s;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .tag:hover {
   background: rgba(255,255,255,0.1);
-  transform: translateY(-2px);
+  border-color: rgba(65, 105, 225, 0.4);
 }
 
+/* ── Mobile ── */
 @media (max-width: 768px) {
   .card {
-    flex-direction: column;
-    min-height: unset;
+    grid-template-columns: 1fr;
+    grid-template-rows: 220px 1fr;
+    height: auto;
   }
 
-  .card > :first-child {
-    flex: unset;
-    height: 240px;
-    min-height: unset;
-  }
-
-  .divider {
-    height: 3px;
-    flex: unset;
+  .imageOverlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+    align-items: flex-end;
+    justify-content: center;
+    padding: 16px;
   }
 
   .cardBody {
     padding: 24px;
+    border-left: none;
+    border-top: 1px solid var(--border);
   }
 }

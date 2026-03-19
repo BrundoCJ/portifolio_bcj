@@ -35,17 +35,21 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               onClick={() => setSelected(project)}
             >
-              <ProjectCarousel images={project.images} title={project.title} />
-
-              <div className={styles.divider} />
+              <div className={styles.imageCol}>
+                <ProjectCarousel images={project.images} title={project.title} />
+                <div className={styles.imageOverlay}>
+                  <span className={styles.viewBtn}>Ver detalhes →</span>
+                </div>
+              </div>
 
               <div className={styles.cardBody}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
                 <p className={styles.cardDesc}>{project.description}</p>
                 <div className={styles.cardTags}>
                   {project.tags.map(({ icon: Icon, name, color }) => (
-                    <span key={name} className={styles.tag} title={name}>
-                      <Icon size={18} color={color} />
+                    <span key={name} className={styles.tag}>
+                      <Icon size={14} color={color} />
+                      {name}
                     </span>
                   ))}
                 </div>

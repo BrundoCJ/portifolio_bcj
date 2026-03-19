@@ -3,6 +3,7 @@ import {
   SiVuedotjs, SiVite, SiPython, SiStreamlit,
   SiSqlite, SiHtml5, SiCss,
 } from 'react-icons/si'
+import { PowerBIIcon, DAXIcon, MIcon } from './biIcons.jsx'
 
 export const projects = [
   {
@@ -23,8 +24,8 @@ export const projects = [
     live: null,
   },
   {
-    title: 'Forms',
-    description: 'Descrição do projeto...',
+    title: 'Formulario para envio de tickets para suporte',
+    description: 'Formulário para envio de tickets de suporte.Este projeto foi desenvolvido dentro de uma plataforma de visualização de relatórios e integrado a um sistema de gerenciamento de tarefas. Assim que o formulário é preenchido, uma tarefa é automaticamente criada no backlog da equipe de suporte, contendo todas as informações necessárias para o atendimento ao cliente.O formulário é responsivo, intuitivo e fácil de usar, permitindo que os usuários registrem seus chamados de forma rápida e eficiente.',
     tags: [
       { icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
       { icon: SiReact,      name: 'React',      color: '#61dafb' },
@@ -44,8 +45,8 @@ export const projects = [
     live: null,
   },
   {
-    title: 'Monitoramento',
-    description: 'Descrição do projeto...',
+    title: 'Monitoramento Workspaces',
+    description: 'Projeto para monitoramento das atualizações de dataflows e modelos semânticos no Power BI. Permite acompanhar o status das execuções em tempo real, identificar falhas rapidamente e analisar indicadores como taxa de sucesso e desempenho.Os dados são organizados por workspace, cliente e categoria, além de contar com visão histórica e painel de falhas recentes para suporte ágil.',
     tags: [
       { icon: SiPython,     name: 'Python',     color: '#3572A5' },
       { icon: SiDjango,     name: 'Django',     color: '#0C4B33' },
@@ -65,6 +66,57 @@ export const projects = [
       '/img/projetos/monitoramento_logs.png',
       '/img/projetos/monitoramento_logs2.png',
       '/img/projetos/monitoramento_workspaces.png',
+    ],
+    github: null,
+    live: null,
+  },
+  {
+    title: 'Comercial',
+    description: 'Dashboard comercial com visão geral de vendas, acompanhamento por vendedor, carteira de clientes e análise de mix de produtos. Desenvolvido para apoiar decisões de equipes comerciais com dados atualizados e organizados.',
+    tags: [
+      { icon: PowerBIIcon, name: 'Power BI', color: '#F2C811' },
+      { icon: DAXIcon,     name: 'DAX',      color: '#F2C811' },
+      { icon: MIcon,       name: 'M',        color: '#F2C811' },
+    ],
+    images: [
+      '/img/projetos_bi/comercial_overview.png',
+      '/img/projetos_bi/comercial_analise_vendedores.png',
+      '/img/projetos_bi/comercial_carteira_clientes.png',
+      '/img/projetos_bi/comercial_mix_produtos.png',
+    ],
+    github: null,
+    live: null,
+  },
+  {
+    title: 'Estoque',
+    description: 'Painel de controle de estoque com curva ABC para classificação de produtos, acompanhamento de faturamento e visão geral do inventário. Facilita a gestão do estoque e a identificação dos itens mais críticos para o negócio.',
+    tags: [
+      { icon: PowerBIIcon, name: 'Power BI', color: '#F2C811' },
+      { icon: DAXIcon,     name: 'DAX',      color: '#F2C811' },
+      { icon: MIcon,       name: 'M',        color: '#F2C811' },
+    ],
+    images: [
+      '/img/projetos_bi/estoque_overview1.png',
+      '/img/projetos_bi/estoque_faturamento2.png',
+      '/img/projetos_bi/estoque_curva_abc3.png',
+      '/img/projetos_bi/estoque_estoque4.png',
+    ],
+    github: null,
+    live: null,
+  },
+  {
+    title: 'Financeiro',
+    description: 'Relatório financeiro com controle de contas a pagar e a receber, visão administrativa consolidada e overview da saúde financeira. Pensado para trazer clareza e organização ao acompanhamento do fluxo de caixa.',
+    tags: [
+      { icon: PowerBIIcon, name: 'Power BI', color: '#F2C811' },
+      { icon: DAXIcon,     name: 'DAX',      color: '#F2C811' },
+      { icon: MIcon,       name: 'M',        color: '#F2C811' },
+    ],
+    images: [
+      '/img/projetos_bi/financeiro_overview.png',
+      '/img/projetos_bi/financeiro_administração.png',
+      '/img/projetos_bi/financeiro_contas_pagar.png',
+      '/img/projetos_bi/financeiro_contas_receber.png',
     ],
     github: null,
     live: null,

@@ -60,10 +60,8 @@ export default function About() {
               </div>
               <h3 className={styles.subtitle}>Desenvolvedor Junior & Analista de Dados</h3>
               <p className={styles.bio}>
-                Sou um desenvolvedor apaixonado por tecnologia, baseado em Maringá, Brasil.
-                Combino habilidades de desenvolvimento frontend e backend com análise de dados para criar
-                soluções completas e orientadas por resultados. Gosto de resolver problemas complexos
-                com código limpo e interfaces intuitivas que realmente fazem diferença para as pessoas.
+                Desenvolvedor full stack baseado em Maringá, com experiência em desenvolvimento web, automações, criação de sites e formulários, além de soluções em BI e análise de dados. Focado em construir soluções eficientes, com código limpo e interfaces intuitivas, sempre orientadas a resultados.
+                Atuo na integração de sistemas e na otimização de processos, buscando sempre melhorar a experiência do usuário e a performance das aplicações. Estou em constante aprendizado, acompanhando novas tecnologias e boas práticas de desenvolvimento.
               </p>
               <p className={styles.bio}>
                 Estou sempre aprendendo e explorando novas tecnologias, com foco em criar
