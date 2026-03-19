@@ -36,7 +36,7 @@
   border-color: var(--accent);
   background: linear-gradient(
     180deg,
-    rgba(230, 57, 70, 0.07) 0%,
+    rgba(65, 105, 225, 0.07) 0%,
     var(--bg-card) 40%
   );
   transform: scale(1.04);

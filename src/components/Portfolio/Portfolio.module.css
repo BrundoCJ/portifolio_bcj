@@ -2,42 +2,10 @@
   background: var(--bg-secondary);
 }
 
-.filters {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-}
-
-.filterBtn {
-  padding: 8px 22px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition);
-  font-family: inherit;
-}
-
-.filterBtn:hover {
-  border-color: var(--accent);
-  color: var(--text-primary);
-}
-
-.filterBtn.activeFilter {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .card {
@@ -45,115 +13,96 @@
   border-radius: var(--radius);
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: row;
+  min-height: 360px;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow);
-  border-color: rgba(230, 57, 70, 0.2);
+  border-color: rgba(65, 105, 225, 0.3);
 }
 
-.cardImage {
-  height: 160px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 16px;
-  position: relative;
+/* faz o wrapper do carrossel esticar 100% da altura */
+.card > :first-child {
+  flex: 0 0 55%;
+  min-height: 100%;
 }
 
-.cardCategory {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(4px);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 100px;
+.divider {
+  flex: 0 0 3px;
+  background: var(--border);
+  align-self: stretch;
 }
 
 .cardBody {
-  padding: 24px;
+  flex: 1;
+  padding: 36px 40px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px;
+  overflow-y: auto;
 }
 
 .cardTitle {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .cardDesc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.75;
+  white-space: pre-line;
 }
 
 .cardTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag {
-  font-size: 0.72rem;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 100px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-}
-
-.cardLinks {
-  display: flex;
   gap: 10px;
   margin-top: 4px;
 }
 
-.cardLink {
-  display: inline-flex;
+.tag {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
   border: 1px solid var(--border);
-  transition: all var(--transition);
+  transition: background 0.2s, transform 0.2s;
 }
 
-.cardLink:hover {
-  color: var(--text-primary);
-  border-color: rgba(255,255,255,0.2);
+.tag:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
 }
 
-.cardLinkPrimary {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-
-.cardLinkPrimary:hover {
-  background: var(--accent-hover);
-  color: #fff;
-  border-color: var(--accent-hover);
-}
-
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    min-height: unset;
   }
-}
 
-@media (max-width: 560px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .card > :first-child {
+    flex: unset;
+    height: 240px;
+    min-height: unset;
+  }
+
+  .divider {
+    height: 3px;
+    flex: unset;
+  }
+
+  .cardBody {
+    padding: 24px;
   }
 }

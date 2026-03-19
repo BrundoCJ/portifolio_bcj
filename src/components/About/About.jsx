@@ -37,7 +37,7 @@ export default function About() {
             animate={animate}
           >
             <div className={styles.imageWrapper}>
-              <img src="/img/pessoa_eu.jpg" alt="Bruno" className={styles.photo} />
+              <img src="/img/pessoa_eu.jpeg" alt="Bruno" className={styles.photo} />
               {/* <div className={styles.badge}>
                 <strong>3+</strong>
                 <span>Anos de experiência</span>

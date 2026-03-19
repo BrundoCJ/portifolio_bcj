@@ -17,13 +17,13 @@ export const personalInfo = [
   { icon: FiGlobe,     label: 'Idiomas',       value: 'Português, Inglês' },
   { icon: FiUser,      label: 'Nacionalidade', value: 'Brasileiro' },
   { icon: FiPhone,     label: 'Telefone',      value: '+55 (44) 9 9819-8263' },
-  { icon: FiMail,      label: 'E-mail',        value: 'bruno@email.com' },
+  { icon: FiMail,      label: 'E-mail',        value: 'bconrado04@gmail.com' },
 ]
 
 /** Contact details shown in the Contact section */
 export const contactInfo = [
   { icon: FiMapPin, label: 'Localização', value: 'Maringá, Paraná — Brasil' },
-  { icon: FiMail,   label: 'E-mail',      value: 'bruno@email.com' },
+  { icon: FiMail,   label: 'E-mail',      value: 'bconrado04@gmail.com' },
   { icon: FiPhone,  label: 'Telefone',    value: '+55 (44) 9 9819-8263' },
 ]
 

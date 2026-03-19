@@ -148,7 +148,7 @@
 .mobileLink:hover,
 .mobileLink.active {
   color: var(--accent);
-  background: rgba(230, 57, 70, 0.06);
+  background: rgba(65, 105, 225, 0.06);
 }
 
 @media (max-width: 768px) {

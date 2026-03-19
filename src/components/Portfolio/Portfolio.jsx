@@ -1,13 +1,15 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { FiExternalLink } from 'react-icons/fi'
-import { projects, categoryGradients } from '../../data/projects'
+import { projects } from '../../data/projects'
 import { staggerItem, whenInView } from '../../utils/animations'
+import ProjectCarousel from './ProjectCarousel'
+import ProjectModal from './ProjectModal'
 import styles from './Portfolio.module.css'
 
 export default function Portfolio() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const [selected, setSelected] = useState(null)
 
   return (
     <section id="portfolio" className={`${styles.portfolio} section`} ref={ref}>
@@ -24,51 +26,38 @@ export default function Portfolio() {
         </motion.div>
 
         <motion.div className={styles.grid}>
-            {projects.map((project, i) => (
-              <motion.article
-                key={project.title}
-                className={styles.card}
-                layout
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.92 }}
-                transition={{ duration: 0.35, delay: i * 0.06 }}
-              >
-                <div
-                  className={styles.cardImage}
-                  style={{ background: categoryGradients[project.category] ?? 'var(--bg-card)' }}
-                  aria-hidden="true"
-                />
+          {projects.map((project, i) => (
+            <motion.article
+              key={project.title}
+              className={styles.card}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              onClick={() => setSelected(project)}
+            >
+              <ProjectCarousel images={project.images} title={project.title} />
 
-                <div className={styles.cardBody}>
-                  <h3 className={styles.cardTitle}>{project.title}</h3>
-                  <p className={styles.cardDesc}>{project.description}</p>
+              <div className={styles.divider} />
 
-                  <div className={styles.cardTags}>
-                    {project.tags.map(tag => (
-                      <span key={tag} className={styles.tag}>{tag}</span>
-                    ))}
-                  </div>
-
-                  <div className={styles.cardLinks}>
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${styles.cardLink} ${styles.cardLinkPrimary}`}
-                        aria-label={`Demo do ${project.title}`}
-                      >
-                        <FiExternalLink size={16} />
-                        Demo
-                      </a>
-                    )}
-                  </div>
+              <div className={styles.cardBody}>
+                <h3 className={styles.cardTitle}>{project.title}</h3>
+                <p className={styles.cardDesc}>{project.description}</p>
+                <div className={styles.cardTags}>
+                  {project.tags.map(({ icon: Icon, name, color }) => (
+                    <span key={name} className={styles.tag} title={name}>
+                      <Icon size={18} color={color} />
+                    </span>
+                  ))}
                 </div>
-              </motion.article>
-            ))}
-          </motion.div>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
       </div>
+
+      {selected && (
+        <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      )}
     </section>
   )
 }

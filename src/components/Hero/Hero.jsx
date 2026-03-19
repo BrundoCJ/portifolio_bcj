@@ -71,7 +71,7 @@ export default function Hero() {
           >
             <div className={styles.imageFrame}>
               <img
-                src="/img/pessoa_eu.jpg"
+                src="/img/pessoa_eu.jpeg"
                 alt="Bruno — Desenvolvedor Frontend & Analista de Dados"
                 className={styles.photo}
               />

@@ -1,9 +1,14 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FiSend } from 'react-icons/fi'
+import emailjs from '@emailjs/browser'
 import { contactInfo, socials } from '../../data/personal'
 import { staggerItem, whenInView } from '../../utils/animations'
 import styles from './Contact.module.css'
+
+const EMAILJS_SERVICE_ID  = 'service_ezeeu1h'
+const EMAILJS_TEMPLATE_ID = 'template_ty54mew'
+const EMAILJS_PUBLIC_KEY  = 'TkupMLajFLSkRphmr'
 
 const INITIAL_FORM = { name: '', email: '', subject: '', message: '' }
 
@@ -12,19 +17,34 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   const [form, setForm] = useState(INITIAL_FORM)
-  const [status, setStatus] = useState(null) // null | 'sending' | 'sent'
+  const [status, setStatus] = useState(null) // null | 'sending' | 'sent' | 'error'
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     setStatus('sending')
-    // TODO: replace with real API call (e.g. EmailJS, Formspree, etc.)
-    setTimeout(() => {
+    try {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name:  form.name,
+          from_email: form.email,
+          subject:    form.subject,
+          message:    form.message,
+        }
+      )
+      console.log('EmailJS OK:', result)
       setStatus('sent')
       setForm(INITIAL_FORM)
       setTimeout(() => setStatus(null), 4000)
-    }, 1200)
+    } catch (err) {
+      console.error('EmailJS erro:', err)
+      setStatus('error')
+      setTimeout(() => setStatus(null), 4000)
+    }
   }
 
   return (
@@ -140,7 +160,8 @@ export default function Contact() {
               disabled={status === 'sending'}
             >
               {status === 'sending' ? 'Enviando...'
-                : status === 'sent'    ? 'Mensagem enviada!'
+                : status === 'sent'   ? 'Mensagem enviada!'
+                : status === 'error'  ? 'Erro ao enviar. Tente novamente.'
                 : <><FiSend size={16} /> Enviar mensagem</>
               }
             </button>
