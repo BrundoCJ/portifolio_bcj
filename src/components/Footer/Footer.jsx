@@ -7,10 +7,10 @@ export default function Footer() {
     <footer className={styles.footer} role="contentinfo">
       <div className={`container ${styles.inner}`}>
         <a href="#home" className={styles.logo}>
-          Dev <span>Bruno</span>
+          <span>B</span>CJ
         </a>
         <p className={styles.copy}>
-          © {year} Dev Bruno. Feito com React & carinho.
+          © {year} BCJ. Desenvolvimento & Soluções.
         </p>
         <button
           className={styles.backToTop}
