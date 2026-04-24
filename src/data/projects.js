@@ -132,7 +132,7 @@ export const projects = [
       { icon: SiCss,        name: 'CSS',        color: '#264de4' },
     ],
     images: [
-      '/img/projetos/ebook_tela 1.png',
+      '/img/projetos/ebook_tela%201.png',
       '/img/projetos/ebook_tela2.png',
       '/img/projetos/ebook_tela3.png',
     ],
