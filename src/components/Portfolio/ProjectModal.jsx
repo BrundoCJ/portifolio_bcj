@@ -4,12 +4,13 @@ import styles from './ProjectModal.module.css'
 
 export default function ProjectModal({ project, onClose }) {
   const [current, setCurrent] = useState(0)
+  const media = project.video ? [{ type: 'video', src: project.video }, ...project.images.map(src => ({ type: 'image', src }))] : project.images.map(src => ({ type: 'image', src }))
 
   const prev = useCallback(() =>
-    setCurrent(c => (c - 1 + project.images.length) % project.images.length), [project.images.length])
+    setCurrent(c => (c - 1 + media.length) % media.length), [media.length])
 
   const next = useCallback(() =>
-    setCurrent(c => (c + 1) % project.images.length), [project.images.length])
+    setCurrent(c => (c + 1) % media.length), [media.length])
 
   useEffect(() => {
     const onKey = (e) => {
@@ -33,13 +34,23 @@ export default function ProjectModal({ project, onClose }) {
         </button>
 
         <div className={styles.imageArea}>
-          <img
-            src={project.images[current]}
-            alt={`${project.title} - ${current + 1}`}
-            className={styles.image}
-          />
+          {media[current].type === 'video' ? (
+            <video
+              src={media[current].src}
+              alt={`${project.title} - ${current + 1}`}
+              className={styles.image}
+              controls
+              autoPlay
+            />
+          ) : (
+            <img
+              src={media[current].src}
+              alt={`${project.title} - ${current + 1}`}
+              className={styles.image}
+            />
+          )}
 
-          {project.images.length > 1 && (
+          {media.length > 1 && (
             <>
               <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={prev} aria-label="Anterior">
                 <FiChevronLeft size={24} />
@@ -49,17 +60,17 @@ export default function ProjectModal({ project, onClose }) {
               </button>
 
               <div className={styles.dots}>
-                {project.images.map((_, i) => (
+                {media.map((_, i) => (
                   <button
                     key={i}
                     className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
                     onClick={() => setCurrent(i)}
-                    aria-label={`Imagem ${i + 1}`}
+                    aria-label={`Mídia ${i + 1}`}
                   />
                 ))}
               </div>
 
-              <span className={styles.counter}>{current + 1} / {project.images.length}</span>
+              <span className={styles.counter}>{current + 1} / {media.length}</span>
             </>
           )}
         </div>

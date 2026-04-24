@@ -121,4 +121,23 @@ export const projects = [
     github: null,
     live: null,
   },
+  {
+    title: 'E-book',
+    description: 'E-book interativo e responsivo com design moderno e navegação intuitiva. Desenvolvido para proporcionar uma experiência de leitura fluida e agradável em qualquer dispositivo.',
+    tags: [
+      { icon: SiReact,      name: 'React',      color: '#61dafb' },
+      { icon: SiVite,       name: 'Vite',       color: '#646cff' },
+      { icon: SiTypescript, name: 'TypeScript', color: '#3178c6' },
+      { icon: SiHtml5,      name: 'HTML',       color: '#e34f26' },
+      { icon: SiCss,        name: 'CSS',        color: '#264de4' },
+    ],
+    images: [
+      '/img/projetos/ebook_tela 1.png',
+      '/img/projetos/ebook_tela2.png',
+      '/img/projetos/ebook_tela3.png',
+    ],
+    video: '/video/ebook.mp4',
+    github: null,
+    live: null,
+  },
 ]

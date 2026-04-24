@@ -1,39 +1,50 @@
 import { useState, useEffect, useCallback } from 'react'
 import styles from './ProjectCarousel.module.css'
 
-export default function ProjectCarousel({ images, title }) {
+export default function ProjectCarousel({ images, title, video }) {
   const [current, setCurrent] = useState(0)
+  const media = video ? [{ type: 'video', src: video }, ...images.map(src => ({ type: 'image', src }))] : images.map(src => ({ type: 'image', src }))
 
   const next = useCallback(() => {
-    setCurrent(c => (c + 1) % images.length)
-  }, [images.length])
+    setCurrent(c => (c + 1) % media.length)
+  }, [media.length])
 
   useEffect(() => {
-    if (images.length <= 1) return
+    if (media.length <= 1) return
     const timer = setInterval(next, 3000)
     return () => clearInterval(timer)
-  }, [next, images.length])
+  }, [next, media.length])
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.carousel}>
-        {images.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={`${title} - ${i + 1}`}
-            className={`${styles.slide} ${i === current ? styles.active : ''}`}
-          />
+        {media.map((item, i) => (
+          item.type === 'video' ? (
+            <video
+              key={item.src}
+              src={item.src}
+              className={`${styles.slide} ${i === current ? styles.active : ''}`}
+              controls
+              muted
+            />
+          ) : (
+            <img
+              key={item.src}
+              src={item.src}
+              alt={`${title} - ${i + 1}`}
+              className={`${styles.slide} ${i === current ? styles.active : ''}`}
+            />
+          )
         ))}
 
-        {images.length > 1 && (
+        {media.length > 1 && (
           <div className={styles.dots}>
-            {images.map((_, i) => (
+            {media.map((_, i) => (
               <button
                 key={i}
                 className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
                 onClick={() => setCurrent(i)}
-                aria-label={`Imagem ${i + 1}`}
+                aria-label={`Mídia ${i + 1}`}
               />
             ))}
           </div>

@@ -36,7 +36,7 @@ export default function Portfolio() {
               onClick={() => setSelected(project)}
             >
               <div className={styles.imageCol}>
-                <ProjectCarousel images={project.images} title={project.title} />
+                <ProjectCarousel images={project.images} title={project.title} video={project.video} />
                 <div className={styles.imageOverlay}>
                   <span className={styles.viewBtn}>Ver detalhes →</span>
                 </div>
