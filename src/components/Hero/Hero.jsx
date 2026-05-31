@@ -10,6 +10,12 @@ export default function Hero() {
 
   return (
     <section id="home" className={`${styles.hero} section`}>
+      <div className={styles.bg} aria-hidden="true">
+        <div className={styles.orb1} />
+        <div className={styles.orb2} />
+        <div className={styles.orb3} />
+      </div>
+
       <div className="container">
         <div className={styles.inner}>
           <motion.div

@@ -4,9 +4,60 @@
   align-items: center;
   position: relative;
   padding-top: 100px;
+  overflow: hidden;
+}
+
+/* Background orbs */
+.bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb1 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(65, 105, 225, 0.18) 0%, transparent 65%);
+  top: -200px;
+  right: -150px;
+  animation: drift 14s ease-in-out infinite;
+}
+
+.orb2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(124, 58, 237, 0.13) 0%, transparent 65%);
+  bottom: -100px;
+  left: -80px;
+  animation: drift 20s ease-in-out infinite reverse;
+}
+
+.orb3 {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(34, 197, 94, 0.07) 0%, transparent 70%);
+  top: 45%;
+  left: 20%;
+  animation: drift 26s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(35px, -45px) scale(1.06); }
+  66%       { transform: translate(-25px, 25px) scale(0.96); }
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
@@ -35,7 +86,10 @@
 }
 
 .name {
-  color: var(--accent);
+  background: linear-gradient(135deg, #4169e1 20%, #7c3aed 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .roleWrapper {
@@ -116,10 +170,11 @@
   position: relative;
   width: 380px;
   height: 460px;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(65, 105, 225, 0.1);
 }
 
 .photo {
@@ -170,12 +225,13 @@
 
 .imageGlow {
   position: absolute;
-  inset: 20px;
-  border-radius: 24px;
-  background: var(--accent);
-  opacity: 0.1;
-  filter: blur(40px);
+  inset: 0px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  opacity: 0.12;
+  filter: blur(48px);
   z-index: 0;
+  transform: scale(1.1);
 }
 
 /* Scroll hint */

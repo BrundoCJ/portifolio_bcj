@@ -29,18 +29,34 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 16px 8px;
+  gap: 10px;
+  padding: 20px 8px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
   cursor: default;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s, background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skillCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(65, 105, 225, 0.1), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .skillCard:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
+  border-color: rgba(65, 105, 225, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(65, 105, 225, 0.12);
+}
+
+.skillCard:hover::before {
+  opacity: 1;
 }
 
 .skillCardName {

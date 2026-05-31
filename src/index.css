@@ -5,19 +5,20 @@
 }
 
 :root {
-  --bg: #0d0d0d;
-  --bg-secondary: #141414;
-  --bg-card: #1a1a1a;
+  --bg: #080810;
+  --bg-secondary: #0e0e18;
+  --bg-card: #13131f;
   --accent: #4169e1;
   --accent-hover: #5a7ff5;
-  --accent-glow: rgba(65, 105, 225, 0.2);
-  --text-primary: #f0f0f0;
-  --text-secondary: #888888;
-  --text-muted: #555555;
+  --accent-glow: rgba(65, 105, 225, 0.22);
+  --accent-2: #7c3aed;
+  --text-primary: #f2f2f5;
+  --text-secondary: #8888a0;
+  --text-muted: #50505f;
   --border: rgba(255, 255, 255, 0.07);
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --radius: 12px;
-  --radius-sm: 6px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --radius: 16px;
+  --radius-sm: 8px;
   --transition: 0.3s ease;
 }
 
@@ -29,6 +30,9 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(65, 105, 225, 0.07), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124, 58, 237, 0.05), transparent);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -88,12 +92,16 @@ button {
 
 .section-tag {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  padding: 5px 18px;
+  background: rgba(65, 105, 225, 0.08);
+  border: 1px solid rgba(65, 105, 225, 0.2);
+  border-radius: 100px;
 }
 
 .section-title {
