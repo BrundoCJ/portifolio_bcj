@@ -15,7 +15,10 @@ export default function ProjectCarousel({ images, title, video }) {
   const isCurrentVideo = media[current]?.type === 'video'
 
   useEffect(() => {
-    if (!isCurrentVideo && videoRef.current) {
+    if (isCurrentVideo && videoRef.current) {
+      videoRef.current.currentTime = 0
+      videoRef.current.play().catch(() => {})
+    } else if (!isCurrentVideo && videoRef.current) {
       videoRef.current.pause()
     }
   }, [isCurrentVideo])
