@@ -2,11 +2,38 @@ import {
   SiReact, SiNodedotjs, SiTypescript, SiDjango,
   SiVuedotjs, SiVite, SiPython, SiStreamlit,
   SiSqlite, SiHtml5, SiCss,
+  SiFastapi, SiLangchain, SiGooglegemini,
 } from 'react-icons/si'
 import { PowerBIIcon, DAXIcon, MIcon } from './biIcons.jsx'
 
 export const projects = [
   {
+    category: 'software',
+    title: 'DocMind AI',
+    description: 'Plataforma RAG (Retrieval Augmented Generation) que permite conversar com seus documentos PDF usando Inteligência Artificial.\n\nFaça upload de qualquer PDF — contratos, relatórios, manuais — e faça perguntas em linguagem natural. O sistema realiza busca semântica no conteúdo e retorna respostas precisas baseadas nos seus documentos, eliminando horas de leitura manual.\n\nConta com autenticação de usuários, histórico de conversas, múltiplos documentos simultâneos e respostas em segundos powered by Google Gemini 2.0 Flash e Llama 3.3 via Groq.',
+    tags: [
+      { icon: SiPython,        name: 'Python',         color: '#3572A5' },
+      { icon: SiFastapi,       name: 'FastAPI',        color: '#009688' },
+      { icon: SiLangchain,     name: 'LangChain',      color: '#1C3C3C' },
+      { icon: SiGooglegemini,  name: 'Google Gemini',  color: '#8E75B2' },
+      { icon: SiReact,         name: 'React',          color: '#61dafb' },
+      { icon: SiVite,          name: 'Vite',           color: '#646cff' },
+    ],
+    images: [
+      '/img/projetos/RAG%201.png',
+      '/img/projetos/RAG%202.png',
+      '/img/projetos/RAG%203.png',
+      '/img/projetos/RAG%204.png',
+      '/img/projetos/RAG%205.png',
+      '/img/projetos/RAG%206.png',
+      '/img/projetos/RAG%207.png',
+    ],
+    video: '/video/GRAVA%C3%87%C3%83O%20RAG%20.mp4',
+    github: null,
+    live: null,
+  },
+  {
+    category: 'software',
     title: 'Acompanhamento de Pedidos',
     description: 'Um projeto feito para quem quer acompanhar seus pedidos em tempo real. Com uma interface fácil de usar, o usuário consegue visualizar todas as etapas do pedido, desde a confirmação até a entrega.\n\nAs atualizações em tempo real são feitas por meio de webhooks integrados à API de um sistema de lançamento de pedidos, garantindo que as informações estejam sempre atualizadas. O sistema também se conecta a serviços de rastreamento para mostrar a localização e o status do pedido.\n\nAlém disso, possui um indicador de faturamento em tempo real, trazendo mais controle e visão geral.\n\nIdeal para tornar a experiência de compra mais prática e transparente.',
     tags: [
@@ -24,6 +51,7 @@ export const projects = [
     live: null,
   },
   {
+    category: 'software',
     title: 'Formulario para envio de tickets para suporte',
     description: 'Formulário para envio de tickets de suporte.Este projeto foi desenvolvido dentro de uma plataforma de visualização de relatórios e integrado a um sistema de gerenciamento de tarefas. Assim que o formulário é preenchido, uma tarefa é automaticamente criada no backlog da equipe de suporte, contendo todas as informações necessárias para o atendimento ao cliente.O formulário é responsivo, intuitivo e fácil de usar, permitindo que os usuários registrem seus chamados de forma rápida e eficiente.',
     tags: [
@@ -45,6 +73,7 @@ export const projects = [
     live: null,
   },
   {
+    category: 'software',
     title: 'Monitoramento Workspaces',
     description: 'Projeto para monitoramento das atualizações de dataflows e modelos semânticos no Power BI. Permite acompanhar o status das execuções em tempo real, identificar falhas rapidamente e analisar indicadores como taxa de sucesso e desempenho.Os dados são organizados por workspace, cliente e categoria, além de contar com visão histórica e painel de falhas recentes para suporte ágil.',
     tags: [
@@ -71,6 +100,7 @@ export const projects = [
     live: null,
   },
   {
+    category: 'powerbi',
     title: 'Comercial',
     description: 'Dashboard comercial com visão geral de vendas, acompanhamento por vendedor, carteira de clientes e análise de mix de produtos. Desenvolvido para apoiar decisões de equipes comerciais com dados atualizados e organizados.',
     tags: [
@@ -88,6 +118,7 @@ export const projects = [
     live: null,
   },
   {
+    category: 'powerbi',
     title: 'Estoque',
     description: 'Painel de controle de estoque com curva ABC para classificação de produtos, acompanhamento de faturamento e visão geral do inventário. Facilita a gestão do estoque e a identificação dos itens mais críticos para o negócio.',
     tags: [
@@ -105,6 +136,7 @@ export const projects = [
     live: null,
   },
   {
+    category: 'powerbi',
     title: 'Financeiro',
     description: 'Relatório financeiro com controle de contas a pagar e a receber, visão administrativa consolidada e overview da saúde financeira. Pensado para trazer clareza e organização ao acompanhamento do fluxo de caixa.',
     tags: [
@@ -122,6 +154,7 @@ export const projects = [
     live: null,
   },
   {
+    category: 'software',
     title: 'E-book',
     description: 'E-book interativo e responsivo com design moderno e navegação intuitiva. Desenvolvido para proporcionar uma experiência de leitura fluida e agradável em qualquer dispositivo.',
     tags: [
