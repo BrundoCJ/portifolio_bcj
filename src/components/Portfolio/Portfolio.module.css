@@ -73,17 +73,6 @@
   overflow: hidden;
 }
 
-.imageCol::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100px;
-  background: linear-gradient(to right, transparent, var(--bg-card));
-  pointer-events: none;
-  z-index: 1;
-}
 
 .imageCol img,
 .imageCol :global(.slide) {
