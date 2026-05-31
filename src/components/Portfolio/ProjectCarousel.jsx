@@ -1,19 +1,31 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import styles from './ProjectCarousel.module.css'
 
 export default function ProjectCarousel({ images, title, video }) {
   const [current, setCurrent] = useState(0)
-  const media = video ? [{ type: 'video', src: video }, ...images.map(src => ({ type: 'image', src }))] : images.map(src => ({ type: 'image', src }))
+  const videoRef = useRef(null)
+  const media = video
+    ? [{ type: 'video', src: video }, ...images.map(src => ({ type: 'image', src }))]
+    : images.map(src => ({ type: 'image', src }))
 
   const next = useCallback(() => {
     setCurrent(c => (c + 1) % media.length)
   }, [media.length])
 
+  const isCurrentVideo = media[current]?.type === 'video'
+
+  useEffect(() => {
+    if (!isCurrentVideo && videoRef.current) {
+      videoRef.current.pause()
+    }
+  }, [isCurrentVideo])
+
   useEffect(() => {
     if (media.length <= 1) return
+    if (isCurrentVideo) return
     const timer = setInterval(next, 3000)
     return () => clearInterval(timer)
-  }, [next, media.length])
+  }, [next, media.length, isCurrentVideo])
 
   return (
     <div className={styles.wrapper}>
@@ -22,10 +34,12 @@ export default function ProjectCarousel({ images, title, video }) {
           item.type === 'video' ? (
             <video
               key={item.src}
+              ref={videoRef}
               src={item.src}
               className={`${styles.slide} ${i === current ? styles.active : ''}`}
               controls
               muted
+              onEnded={next}
             />
           ) : (
             <img
