@@ -3,7 +3,7 @@
 export const experience = [
   {
     type: 'work',
-    title: 'Desenvolvedor Full Stack Junior',
+    title: 'Desenvolvedor Software & IA',
     org: 'ROQT Data & IA',
     period: '2026 — Presente',
     description:
